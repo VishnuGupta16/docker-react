@@ -2,9 +2,9 @@ FROM node:alpine as builder
 
 WORKDIR '/app'
 
-COPY package*.json /app/
+COPY package*.json ./
 RUN npm install
-COPY . /app/
+COPY . .
 RUN pwd
 
 CMD ["npm","run","build"]
