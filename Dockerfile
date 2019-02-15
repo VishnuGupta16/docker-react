@@ -1,15 +1,18 @@
 FROM node:alpine as builder
 
-WORKDIR '/app'
+WORKDIR /app
 
 COPY package*.json ./
 RUN npm install
 COPY . .
-RUN pwd
+RUN ls
+RUN ls build
 
 CMD ["npm","run","build"]
 
-FROM nginx
+FROM nginx 
+RUN ls /usr/share/nginx/html
+RUN pwd
 #used by AWS elasticbeanstalk
 EXPOSE 80
 COPY --from=builder /app/build /usr/share/nginx/html
